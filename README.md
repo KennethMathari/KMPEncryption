@@ -11,7 +11,7 @@ The goal is to achieve seamless data security without sacrificing cross-platform
 - `Cipher` - to perform encryption and decryption operations using various algorithms (such as AES, RSA, and DES)
 
 ## Encryption in Shared Module
-`kotlin/com/kmp/encryption/utils/EncryptionManager.kt`
+`composeApp/src/commonMain/kotlin/com/kmp/encryption/utils/EncryptionManager.kt`
 
 This is an interface that defines the encryption and decryption methods.
 
@@ -23,15 +23,15 @@ interface EncryptionManager {
 ```
 
 Their implementation is done in the native Android & iOS modules
-- Android Module: `kotlin/com/kmp/encryption/utils/AndroidEncryptionManager.kt`
-- iOS Module: `kotlin/com/kmp/encryption/IosEncryptionManager.kt`
+- Android Module: `composeApp/src/androidMain/kotlin/com/kmp/encryption/utils/AndroidEncryptionManager.kt`
+- iOS Module: `composeApp/src/iosMain/kotlin/com/kmp/encryption/IosEncryptionManager.kt`
 
 ## Local Storage in Shared Module
-`kotlin/com/kmp/encryption/utils/DataStoreManager.kt`
+`composeApp/src/commonMain/kotlin/com/kmp/encryption/utils/DataStoreManager.kt`
 
-This is a class that uses dataStore to store/retrieve data locally. DataStore in instantiated in the native Android & iOS modules through Koin.
+This is a class that uses dataStore to store/retrieve data locally. DataStore is instantiated in the native Android and iOS modules through Koin.
 
-- Android Module: `kotlin/com/kmp/encryption/di/AppModule.android.kt`
+- Android Module: `composeApp/src/androidMain/kotlin/com/kmp/encryption/di/AppModule.android.kt`
 - 
 ```
 single<DataStore<Preferences>> {
@@ -42,7 +42,7 @@ single<DataStore<Preferences>> {
     }
 ```
 
-- iOS Module : `kotlin/com/kmp/encryption/di/AppModule.ios.kt`
+- iOS Module : `composeApp/src/iosMain/kotlin/com/kmp/encryption/di/AppModule.ios.kt`
 
 ```
 single<DataStore<Preferences>> {
