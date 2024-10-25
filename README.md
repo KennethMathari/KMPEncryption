@@ -62,4 +62,4 @@ single<DataStore<Preferences>> {
         )
     }
 ```
-Presentation slides for this project are available [here](https://www.canva.com/design/DAGUe3Wq9ew/25yZmZ23AiGrFEqpyUHV5Q/edit?utm_content=DAGUe3Wq9ew&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+Presentation slides for this project are available [here](https://www.canva.com/design/DAGUe3Wq9ew/ZdeUtgY5SiYGunrBuUTAow/view?utm_content=DAGUe3Wq9ew&utm_campaign=designshare&utm_medium=link&utm_source=editor)
