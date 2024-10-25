@@ -12,47 +12,54 @@ The goal is to achieve seamless data security without sacrificing cross-platform
 
 ## Encryption in Shared Module
 `kotlin/com/kmp/encryption/utils/EncryptionManager.kt`
+
 This is an interface that defines the encryption and decryption methods.
 
-`
+```
 interface EncryptionManager {
     suspend fun encrypt(plainText: String) : ByteArray
     suspend fun decrypt(cipherText: ByteArray): String
 }
-`
+```
+
 Their implementation is done in the native Android & iOS modules
 - Android Module: `kotlin/com/kmp/encryption/utils/AndroidEncryptionManager.kt`
 - iOS Module: `kotlin/com/kmp/encryption/IosEncryptionManager.kt`
 
 ## Local Storage in Shared Module
 `kotlin/com/kmp/encryption/utils/DataStoreManager.kt`
+
 This is a class that uses dataStore to store/retrieve data locally. DataStore in instantiated in the native Android & iOS modules through Koin.
+
 - Android Module: `kotlin/com/kmp/encryption/di/AppModule.android.kt`
-`
+- 
+```
 single<DataStore<Preferences>> {
         val context = get<Context>()
         PreferenceDataStoreFactory.createWithPath(produceFile = {
             context.filesDir.resolve(DATASTORE_PREF_FILENAME).absolutePath.toPath()
         })
     }
-`
+```
+
 - iOS Module : `kotlin/com/kmp/encryption/di/AppModule.ios.kt`
 
-`
+```
 single<DataStore<Preferences>> {
-PreferenceDataStoreFactory.createWithPath(
-produceFile = {
-val directory = NSFileManager.defaultManager.URLForDirectory(
-directory = NSDocumentDirectory,
-inDomain = NSUserDomainMask,
-appropriateForURL = null,
-create = false,
-error = null
-)
-val filePath = requireNotNull(directory).path()+"/$DATASTORE_PREF_FILENAME"
+        PreferenceDataStoreFactory.createWithPath(
+            produceFile = {
+                val directory = NSFileManager.defaultManager.URLForDirectory(
+                    directory = NSDocumentDirectory,
+                    inDomain = NSUserDomainMask,
+                    appropriateForURL = null,
+                    create = false,
+                    error = null
+                )
+
+                val filePath = requireNotNull(directory).path()+"/$DATASTORE_PREF_FILENAME"
                 filePath.toPath()
             }
         )
     }
-`
+```
 
